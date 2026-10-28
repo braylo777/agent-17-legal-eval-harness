@@ -1,0 +1,22 @@
+{
+ "rule": {
+  "f1": 0.615,
+  "precision": 0.585,
+  "recall": 0.65
+ },
+ "rule+verifier": {
+  "f1": 0.655,
+  "precision": 0.661,
+  "recall": 0.65
+ },
+ "bm25": {
+  "f1": 0.593,
+  "precision": 0.464,
+  "recall": 0.821
+ },
+ "bm25+verifier": {
+  "f1": 0.669,
+  "precision": 0.614,
+  "recall": 0.735
+ }
+}

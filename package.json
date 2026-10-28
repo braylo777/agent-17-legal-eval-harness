@@ -1,0 +1,2 @@
+{ "name": "agent-17-legal-eval-harness", "version": "1.0.0", "type": "module", "private": true,
+  "scripts": { "test": "node --test test/", "eval": "node evals/run.mjs", "gate": "node evals/gate.mjs", "build": "node build.mjs" } }

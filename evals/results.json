@@ -1,0 +1,159 @@
+{
+ "dataset": "CUAD v1 test subset (chenghao/cuad_qa), 40 contracts: 10 dev / 30 test, 8 clause types",
+ "test": {
+  "rule": {
+   "n": 240,
+   "precision": 0.585,
+   "recall": 0.65,
+   "f1": 0.615,
+   "accuracy": 0.729,
+   "judge_agreement": 0.883,
+   "judge_kappa": 0.735,
+   "per_clause_f1": {
+    "Governing Law": 0.538,
+    "Anti-Assignment": 0.863,
+    "Cap On Liability": 0.783,
+    "Audit Rights": 0.522,
+    "Insurance": 0.414,
+    "Termination For Convenience": 0.583,
+    "Exclusivity": 0.533,
+    "Non-Compete": 0.533
+   }
+  },
+  "rule+verifier": {
+   "n": 240,
+   "precision": 0.661,
+   "recall": 0.65,
+   "f1": 0.655,
+   "accuracy": 0.729,
+   "judge_agreement": 0.892,
+   "judge_kappa": 0.756,
+   "per_clause_f1": {
+    "Governing Law": 0.622,
+    "Anti-Assignment": 0.863,
+    "Cap On Liability": 0.783,
+    "Audit Rights": 0.571,
+    "Insurance": 0.5,
+    "Termination For Convenience": 0.583,
+    "Exclusivity": 0.533,
+    "Non-Compete": 0.571
+   }
+  },
+  "bm25": {
+   "n": 240,
+   "precision": 0.464,
+   "recall": 0.821,
+   "f1": 0.593,
+   "accuracy": 0.538,
+   "judge_agreement": 0.917,
+   "judge_kappa": 0.834,
+   "per_clause_f1": {
+    "Governing Law": 0.963,
+    "Anti-Assignment": 0.852,
+    "Cap On Liability": 0.419,
+    "Audit Rights": 0.643,
+    "Insurance": 0.727,
+    "Termination For Convenience": 0.474,
+    "Exclusivity": 0.368,
+    "Non-Compete": 0.056
+   }
+  },
+  "bm25+verifier": {
+   "n": 240,
+   "precision": 0.614,
+   "recall": 0.735,
+   "f1": 0.669,
+   "accuracy": 0.692,
+   "judge_agreement": 0.958,
+   "judge_kappa": 0.906,
+   "per_clause_f1": {
+    "Governing Law": 0.962,
+    "Anti-Assignment": 0.809,
+    "Cap On Liability": 0.552,
+    "Audit Rights": 0.667,
+    "Insurance": 0.857,
+    "Termination For Convenience": 0.563,
+    "Exclusivity": 0.286,
+    "Non-Compete": 0
+   }
+  }
+ },
+ "dev": {
+  "rule": {
+   "n": 80,
+   "precision": 0.561,
+   "recall": 0.59,
+   "f1": 0.575,
+   "accuracy": 0.688,
+   "judge_agreement": 0.925,
+   "judge_kappa": 0.833,
+   "per_clause_f1": {
+    "Governing Law": 0.471,
+    "Anti-Assignment": 0.75,
+    "Cap On Liability": 1,
+    "Audit Rights": 0.4,
+    "Insurance": 0,
+    "Termination For Convenience": 0.857,
+    "Exclusivity": 0.8,
+    "Non-Compete": 0.667
+   }
+  },
+  "rule+verifier": {
+   "n": 80,
+   "precision": 0.622,
+   "recall": 0.59,
+   "f1": 0.605,
+   "accuracy": 0.688,
+   "judge_agreement": 0.938,
+   "judge_kappa": 0.862,
+   "per_clause_f1": {
+    "Governing Law": 0.571,
+    "Anti-Assignment": 0.75,
+    "Cap On Liability": 1,
+    "Audit Rights": 0.4,
+    "Insurance": 0,
+    "Termination For Convenience": 0.857,
+    "Exclusivity": 0.8,
+    "Non-Compete": 0.667
+   }
+  },
+  "bm25": {
+   "n": 80,
+   "precision": 0.427,
+   "recall": 0.821,
+   "f1": 0.561,
+   "accuracy": 0.45,
+   "judge_agreement": 0.95,
+   "judge_kappa": 0.898,
+   "per_clause_f1": {
+    "Governing Law": 1,
+    "Anti-Assignment": 0.889,
+    "Cap On Liability": 0.462,
+    "Audit Rights": 0.286,
+    "Insurance": 0.5,
+    "Termination For Convenience": 0.462,
+    "Exclusivity": 0.286,
+    "Non-Compete": 0.333
+   }
+  },
+  "bm25+verifier": {
+   "n": 80,
+   "precision": 0.625,
+   "recall": 0.769,
+   "f1": 0.69,
+   "accuracy": 0.725,
+   "judge_agreement": 0.975,
+   "judge_kappa": 0.939,
+   "per_clause_f1": {
+    "Governing Law": 1,
+    "Anti-Assignment": 0.857,
+    "Cap On Liability": 0.667,
+    "Audit Rights": 0.333,
+    "Insurance": 0.667,
+    "Termination For Convenience": 0.667,
+    "Exclusivity": 0.364,
+    "Non-Compete": 0.8
+   }
+  }
+ }
+}
