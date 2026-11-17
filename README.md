@@ -7,7 +7,7 @@ A multi-agent eval harness for contract clause extraction on a public CUAD subse
 1. **Extractor**: finds the sentence holding a clause (rule baseline or BM25 baseline; LLM extractor after quota reset).
 2. **Verifier**: rejects extractions missing the clause's cue term or with a bad length, so the system abstains instead of guessing.
 3. **Judge**: two independent judges (token-F1 ≥ 0.3 overlap judge *A*, normalized-containment judge *B*) score each output against CUAD gold spans. Their agreement and Cohen's κ are reported, so judge reliability is measured, not assumed.
-4. **Regression gate**: `npm run gate` (also wired as a GitHub Actions job in `ci/github-actions-ci.yml`; copy it to `.github/workflows/` to enable, since the box token lacks the `workflow` scope) fails the build if any tracked metric drops more than 0.02 below `evals/baseline.json`.
+4. **Regression gate**: `python3 evals/gate.py` (also wired as a GitHub Actions job in `ci/github-actions-ci.yml`; copy it to `.github/workflows/` to enable, since the box token lacks the `workflow` scope) fails the build if any tracked metric drops more than 0.02 below `data/baseline.json`.
 
 ## Data
 CUAD v1 test split (Atticus Project, CC BY 4.0) via the `chenghao/cuad_qa` HF mirror. The first 40 contracts (alphabetical) were split into **10 dev** (used to write the rules) and **30 test** contracts. 8 clause types: Governing Law, Anti-Assignment, Cap On Liability, Audit Rights, Insurance, Termination For Convenience, Exclusivity, Non-Compete. A (contract, clause) pair with no CUAD answer counts as absent, so precision counts false alarms.
@@ -28,15 +28,19 @@ What this shows: the verifier adds **+0.15 precision** to BM25 (0.464 → 0.614)
 
 ## How to run
 ```bash
-npm test          # 19 offline tests (unit + regression gate), no model calls
-npm run eval      # recompute evals/results.json
-npm run gate      # regression gate vs evals/baseline.json (also runs in CI)
-npm run build     # bundle dist/worker.js;  or: npx wrangler deploy
+python3 -m pytest                 # 5 test functions (unit + regression gate), no model calls
+cd worker && cargo test           # 3 Rust test functions
+python3 evals/run.py --write      # recompute evals/results.json
+python3 evals/gate.py             # regression gate vs data/baseline.json (also runs in CI)
+cd worker && worker-build --release   # build the Worker (wasm); then: wrangler deploy
 ```
 No dependencies. Free tier only. Rollback tag: `v0-rollback`.
 
 ## Pending (after the Workers AI quota reset, 7 PM CT Oct 28 2026)
 - LLM extractor (`@cf/meta/llama-3.1-8b-instruct`) on the same 240 test cases, gated by the same verifier.
 - LLM-as-judge, plus its agreement and κ against judges A and B and against gold.
-- Add the LLM rows to the table and baseline.json so the gate covers them.
+- Add the LLM rows to the table and data/baseline.json so the gate covers them.
 Not yet run, so no numbers are reported for them.
+
+## Port note
+Rust and Python replace the JavaScript. Over all 640 dataset predictions (40 contracts x 8 clause types x rule/BM25) and the sentence splitter, the old JavaScript, the Python and the Rust code agree exactly. Python reproduces the stored `evals/results.json` identically, and the rendered demo page is byte-identical. The previous JavaScript version is on the `legacy-js` branch and the `pre-pycrust` tag. The dataset is in `data/`.
